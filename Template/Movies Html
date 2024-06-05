@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .movies-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .movie {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .movie img {
+            width: 50px;
+            height: 75px;
+            margin-right: 10px;
+        }
+        .movie h3 {
+            margin: 0;
+        }
+        .movie p {
+            margin: 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="movies-container">
+        <h2>Movies List</h2>
+        {% for movie in movies %}
+        <div class="movie">
+            <img src="{{ movie.logo }}" alt="{{ movie.title }} Logo">
+            <div>
+                <h3>{{ movie.title }}</h3>
+                <p>IMDb Rating: {{ movie.rating }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
