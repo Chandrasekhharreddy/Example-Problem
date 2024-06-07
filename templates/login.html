@@ -64,40 +64,21 @@
             background-color: #218838;
         }
     </style>
+      {%include 'bootstrap.html'%}
 </head>
 <body>
     <div class="overlay"></div>
     <div class="container">
         <h1>Login</h1>
-        <form onsubmit="handleSubmit(event)">
+        <form methods="post">
             <input type="text" id="username" placeholder="Username" required>
             <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Submit</button>
+            <button role="submit" type="submit">Submit</button>
         </form>
+        <p>New to our website?</p>
+        <a href="{{url_for('signup')}}" class="btn btn-warning">Sign up</a>
     </div>
 
-    <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = '/intermediate';
-                } else {
-                    alert('Login failed');
-                }
-            });
-        }
-    </script>
+             
 </body>
 </html>

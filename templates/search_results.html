@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    {% include 'bootstrap.html' %}
+    {% include 'style.css' %}
+</head>
+<body class="lead">
+    <div class="container">
+        <h2 class="search-results-heading">Movie Results for "{{ query }}"</h2>
+        {% if movies %}
+            <div class="row mt-3 ">
+                {% for movie in movies %}
+                    {% if loop.index0 % 4 == 0 %}
+                        </div><div class="row">
+                    {% endif %}
+                    <div class="col-md-3 mt-3">
+                        <div class="card card-custom lead">
+                            <img class="card-img-top" src="{{movie.link}}">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: yellow;">{{ movie.movie_name }}</h5>
+                                <p class="card-text">Year: {{ movie.year }}<br>
+                                    Genre: {{ movie.genre }}<br>
+                                    Cast: {{ movie.cast }}<br>
+                                    Rating: {{ movie.Rating }}</p>
+                                    <div class="text-center">
+                                        <form action="{{ url_for('submit_movie') }}" method="post">
+                                            <input type="hidden" name="movie_name" value="{{ movie.movie_name }}">
+                                            <button type="submit" class="btn btn-warning">+ Add to watchlist +</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-results">No Results</p>
+        {% endif %}
+
+        
+    </div>
+    <div class="text-center lead mt-4 container">
+        <p style="font-size: 32px;"><B>!!! IMPORTANT NOTE !!!</b></p>
+        <p style="color: antiquewhite;" >List of movies/actors/directors are limited due to content accessibility on the card and companies required specifications. So usage of an API was not efficient enough and entered manually to the database on my own. Kindly notice.</p>
+
+    </div>
+</body>
+</html>
